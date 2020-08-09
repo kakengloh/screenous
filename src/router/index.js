@@ -4,10 +4,13 @@ import Home from '@/views/Home.vue'
 import Recorder from '@/views/Recorder.vue'
 import Player from '@/views/Player.vue'
 import Tutorial from '@/views/Tutorial.vue'
+import Contact from '@/views/Contact.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+
+  // Production
   {
     path: '/',
     name: 'Home',
@@ -24,6 +27,11 @@ const routes = [
     component: Tutorial
   },
   {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact
+  },
+  {
     path: '/recorder',
     name: 'Recorder',
     component: Recorder
@@ -31,6 +39,18 @@ const routes = [
   {
     path: '/play/:slug',
     name: 'Player',
+    component: Player
+  },
+
+  // Development
+  {
+    path: '/dev/recorder',
+    name: 'Recorder (Dev)',
+    component: Recorder
+  },
+  {
+    path: '/dev/play/:slug',
+    name: 'Player (Dev)',
     component: Player
   },
 ]

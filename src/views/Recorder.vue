@@ -169,11 +169,21 @@ export default {
 
             const slug = shortid.generate()
 
-            var snapshot = await this.fStorage.child(`clips/${monthYear}/${slug}.mp4`).put(blob)
+            var path = `clips/${monthYear}/${slug}.mp4`
+
+            if(this.$store.state.env == 'development') {
+                path = 'dev/' + path
+            }
+
+            var snapshot = await this.fStorage.child(path).put(blob)
 
             if(snapshot.state == 'success') {
 
-                this.shareableLink = `https://screenous.com/#/play/${slug}`
+                this.shareableLink = `https://${location.hostname}/#/play/${slug}`
+
+                if(this.$store.state.env == 'development') {
+                    this.shareableLink = `https://${location.hostname}/#/dev/play/${slug}`
+                }
 
                 var clipSlugs = JSON.parse((localStorage.getItem('clipSlugs') || '[]'))
                 
@@ -181,13 +191,13 @@ export default {
 
                 localStorage.setItem('clipSlugs', JSON.stringify(clipSlugs))
 
-                var { data } = await axios.get('https://ifconfig.me/ip')
+                // var { data } = await axios.get('https://ifconfig.me/ip')
 
-                await this.fStore.collection('clips').add({
-                    slug,
-                    ip: data,
-                    createdAt: Date.now()
-                })
+                // await this.fStore.collection('clips').add({
+                //     slug,
+                //     ip: data,
+                //     createdAt: Date.now()
+                // })
 
             }         
             

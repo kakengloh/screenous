@@ -20,6 +20,14 @@ export default {
   components: {
     Nav,
     Footer,
+  },
+
+  created() {
+
+    if(location.hash.startsWith('#/dev/')) {
+      this.$store.dispatch('setEnv', 'development')
+    }
+
   }
 
 }

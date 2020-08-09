@@ -28,8 +28,14 @@ export default {
 
             const monthYear = `${today.getUTCMonth() + 1}-${today.getUTCFullYear()}`
 
+            var path = `clips/${monthYear}/${slug}.mp4`
+
+            if(this.$store.state.env == 'development') {
+                path = 'dev/' + path
+            }
+
             try {
-                this.src = await this.fStorage.child(`clips/${monthYear}/${slug}.mp4`).getDownloadURL()
+                this.src = await this.fStorage.child(path).getDownloadURL()
             } catch(e) {
                 this.isError = true
             }

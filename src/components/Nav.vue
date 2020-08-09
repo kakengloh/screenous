@@ -13,6 +13,8 @@
                 <router-link class="nav-link" to="/recorder">Recorder</router-link>
 
                 <router-link class="nav-link" to="/tutorial">Tutorial</router-link>
+                
+                <router-link class="nav-link" to="/contact">Contact Me</router-link>
 
             </ul>
         </div>
