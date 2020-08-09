@@ -173,7 +173,7 @@ export default {
 
             if(snapshot.state == 'success') {
 
-                this.shareableLink = `https://${location.hostname}/#/play/${slug}`
+                this.shareableLink = `https://screenous.com/#/play/${slug}`
 
                 var clipSlugs = JSON.parse((localStorage.getItem('clipSlugs') || '[]'))
                 
