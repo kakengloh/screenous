@@ -1,6 +1,6 @@
 <template>
-    <div class="container d-flex h-100">
-        <div class="justify-content-center align-self-center w-100">
+    <div class="container vertical-center">
+        <div class="justify-content-center w-100">
             <h2 class="mb-5">Feel free to drop me a message 😉</h2>
             <input v-model="envelope.email" type="text" placeholder="Email *" class="form-control mb-4">
             <input v-model="envelope.subject" type="text" placeholder="Subject *" class="form-control mb-4">

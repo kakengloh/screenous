@@ -1,6 +1,6 @@
 <template>
-    <div class="container justify-content-center d-flex h-100">
-        <div class="align-self-center">
+    <div class="vertical-center justify-content-center">
+        <div class="">
             <video id="video-player" class="mb-3" poster="@/assets/black.jpg" :src="blobSrc" autoplay controls />
             <div class="row justify-content-center mb-4">
                 <button v-if="!isRecording" class="btn btn-lg btn-primary d-flex align-items-center" @click="start">{{ isFirstTime ? 'Start Recording' : 'Start Another Recording' }}

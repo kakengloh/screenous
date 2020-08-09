@@ -31,11 +31,12 @@ export default {
 <style scoped>
 
 nav {
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   width: 100%;
   background-color: #101357;
+  height: 5vh;
 }
 
 #nav a {

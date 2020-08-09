@@ -1,6 +1,6 @@
 <template>
-    <div class="container d-flex h-100">
-        <div class="justify-content-center align-self-center">
+    <div class="container vertical-center">
+        <div class="justify-content-center">
             <video v-if="src" id="video-player" class="mb-3" :src="src" autoplay controls />
         </div>
     </div>

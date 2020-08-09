@@ -1,6 +1,6 @@
 <template>
-  <div class="container justify-content-center d-flex h-100">
-        <div class="row align-self-center">
+  <div class="container vertical-center justify-content-center">
+        <div class="row">
             <div class="col-md-6 my-md-auto mb-5 mb-md-0 text-center text-md-left">
                 <span class="text-uppercase text-muted small-xl">Screenous is free to use for everyone</span>
                 <h1 class="description mt-2 mb-4">The easiest way for recording your screen and share it to others</h1>

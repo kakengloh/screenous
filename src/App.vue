@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Nav />
-    <router-view/>
+    <div id="content">
+      <router-view/>
+    </div>
     <Footer />
   </div>
 </template>
@@ -36,16 +38,30 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+html, body {
+  background-color: #F1F3FF;
+  padding: 0;
+  margin: 0;
+}
+
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: white; */
-  background-color: #F1F3FF;
-  height: 100vh;
   position: relative;
+}
+
+#content {
+  height: 90vh;
+}
+
+.vertical-center {
+  min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 90vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
 }
 
 a {

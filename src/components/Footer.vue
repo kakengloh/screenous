@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar">
+    <nav class="navbar footer">
         <span class="copyright">Copyright© 2020 SCREENOUS. All rights reserved. </span>
     </nav>
 </template>
@@ -12,13 +12,14 @@ export default {
 
 <style scoped>
 
-nav {
-    position: absolute;
+.footer {
+    position: fixed;
     bottom: 0;
     left: 0;
+    clear: both;
     width: 100%;
     background-color: #101357;
-    height: 5%;
+    height: 5vh;
 }
 
 .copyright {
