@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import * as firebase from 'firebase'
 import config from '../config'
+import './extensions'
 
 firebase.initializeApp(config.firebase)
 

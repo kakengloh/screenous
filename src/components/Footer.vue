@@ -18,7 +18,7 @@ export default {
     left: 0;
     clear: both;
     width: 100%;
-    background-color: #101357;
+    background-color: #384FB7;
     height: 5vh;
 }
 

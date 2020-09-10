@@ -26,9 +26,9 @@ export default {
 
             const today = new Date()
 
-            const monthYear = `${today.getUTCMonth() + 1}-${today.getUTCFullYear()}`
+            var ISOWeek = today.getISOWeek()
 
-            var path = `clips/${monthYear}/${slug}.mp4`
+            var path = `clips/${ISOWeek}/${slug}.mp4`
 
             if(this.$store.state.env == 'development') {
                 path = 'dev/' + path
@@ -37,7 +37,23 @@ export default {
             try {
                 this.src = await this.fStorage.child(path).getDownloadURL()
             } catch(e) {
-                this.isError = true
+
+                if(--ISOWeek < 1) {
+                    ISOWeek = 52
+                }
+
+                path = `clips/${ISOWeek}/${slug}.mp4`
+
+                if(this.$store.state.env == 'development') {
+                    path = 'dev/' + path
+                }
+
+                try {
+                    this.src = await this.fStorage.child(path).getDownloadURL()
+                } catch(e) {
+                    this.isError = true
+                }
+
             }
 
         }

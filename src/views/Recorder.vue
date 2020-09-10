@@ -3,6 +3,12 @@
         <div class="">
             <video id="video-player" class="mb-3" poster="@/assets/black.jpg" :src="blobSrc" autoplay controls />
             <div class="row justify-content-center mb-4">
+                <div>
+                    <input type="checkbox" class="form-check-input" id="isMicEnabled" v-model="isMicEnabled">
+                    <label class="form-check-label" for="isMicEnabled">Enable microphone</label>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-4">
                 <button v-if="!isRecording" class="btn btn-lg btn-primary d-flex align-items-center" @click="start">{{ isFirstTime ? 'Start Recording' : 'Start Another Recording' }}
                     <svg width="0.75em" height="0.75em" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-left: 0.5em;">
                         <circle cx="8" cy="8" r="8"/>
@@ -71,15 +77,35 @@ export default {
         shareableLink: null,
         isLinkCopied: false,
         timeRemaining: 90,
+        isMicEnabled: false,
     }),
 
     methods: {
 
         async start() {
 
-            this.stream = await navigator.mediaDevices.getDisplayMedia({
-                video: { mediaSource: "screen" }
-            })
+            if(this.isMicEnabled) {
+
+                const videoStream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { mediaSource: "screen" },
+                })
+
+                const audioStream = await navigator.mediaDevices.getUserMedia({
+                    audio: true,
+                })
+
+                const videoTrack = videoStream.getTracks()[0]
+                const audioTrack = audioStream.getTracks()[0]
+
+                this.stream = new MediaStream([videoTrack, audioTrack])
+
+            } else {
+
+                this.stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { mediaSource: "screen" },
+                })
+
+            }
 
             this.recorder = new MediaRecorder(this.stream)
         
@@ -102,6 +128,8 @@ export default {
         
             this.recorder.start()
 
+            this.timeRemaining = 90
+
             this.isRecording = true
 
             this.isFirstTime = false
@@ -118,6 +146,10 @@ export default {
 
             this.recorder.stop()
             this.stream.getVideoTracks()[0].stop()
+            
+            if(this.isMicEnabled) {
+                this.stream.getAudioTracks()[0].stop()
+            }
 
         },
 
@@ -165,11 +197,11 @@ export default {
 
             const today = new Date()
 
-            const monthYear = `${today.getUTCMonth() + 1}-${today.getUTCFullYear()}`
+            const ISOWeek = today.getISOWeek()
 
             const slug = shortid.generate()
 
-            var path = `clips/${monthYear}/${slug}.mp4`
+            var path = `clips/${ISOWeek}/${slug}.mp4`
 
             if(this.$store.state.env == 'development') {
                 path = 'dev/' + path
@@ -221,11 +253,11 @@ export default {
 <style scoped>
 
 video {
+    position: relative;
     width: 60vw;
     height: 60vh;
     border-radius: 15px;
     object-fit: cover;
-    border: 1px solid #ccc;
 }
 
 </style>

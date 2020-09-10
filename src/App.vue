@@ -70,19 +70,19 @@ a {
 }
 
 .btn-primary {
-  background-color: #101357;
+  background-color: #384FB7;
   color: white;
   border: none;
   transition: opacity .3s;
 }
 
 .btn-primary:hover {
-  background-color: #101357;
+  background-color: #384FB7;
   opacity: .6;
 }
 
 .btn-primary:focus {
-  background-color: #101357;
+  background-color: #384FB7;
 }
 
 </style>

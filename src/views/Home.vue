@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6 my-md-auto mb-5 mb-md-0 text-center text-md-left">
                 <span class="text-uppercase text-muted small-xl">Screenous is free to use for everyone</span>
-                <h1 class="description mt-2 mb-4">The easiest way for recording your screen and share it to others</h1>
+                <h1 class="description mt-2 mb-4">Share screen recordings through quick links.</h1>
                 <h2 class="subdescription mb-4">No sign-up or installation is required</h2>
                 <router-link class="nav-link" to="/recorder">
                   <button class="btn btn-lg btn-primary d-flex align-items-center">Get Started
@@ -15,7 +15,7 @@
                 </router-link>
             </div>
             <div class="col-md-6 play-wrapper">
-                <img src="https://webresourcesdepot.com/demo/snap/img/macbook.png" class="img-fluid d-block mx-auto" alt="MacBook">
+                <img src="https://webresourcesdepot.com/demo/snap/img/macbook.png" class="img-fluid d-block mx-auto" alt="Laptop">
             </div>
         </div>
     </div>
