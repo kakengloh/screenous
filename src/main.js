@@ -6,11 +6,11 @@ import * as firebase from 'firebase'
 import config from '../config'
 import './extensions'
 
-console.log(config.firebase)
-
 firebase.initializeApp(config.firebase)
 
 import FirebaseMixin from '@/mixins/Firebase'
+
+import 'bootstrap/dist/css/bootstrap.css'
 
 import 'semantic-ui-css/semantic.min.css';
 import SuiVue from 'semantic-ui-vue'
