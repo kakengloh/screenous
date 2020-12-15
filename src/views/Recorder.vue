@@ -142,11 +142,17 @@
       <div v-if="isFinished">
         <div class="mb-4">
           <sui-input
+            style="width: 50%"
             placeholder="Generating link"
             :loading="!shareableLink"
             :value="shareableLink"
-            @focus="$event.target.select()"
           ></sui-input>
+          <sui-button
+            @click="copyLink"
+            icon="clipboard check"
+            :color="isLinkCopied ? 'positive' : ''"
+            >{{ isLinkCopied ? "Copied" : "Copy shareable link" }}</sui-button
+          >
         </div>
         <sui-button v-if="dataSrc" icon="download"
           ><a :href="dataSrc" download="screen_recording.mp4"
@@ -323,9 +329,12 @@ export default {
     },
 
     copyLink() {
-      let textToCopy = this.$refs.shareableLink;
-      textToCopy.select();
+      let dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = this.shareableLink;
+      dummy.select();
       document.execCommand("copy");
+      document.body.removeChild(dummy);
 
       this.isLinkCopied = true;
     },
