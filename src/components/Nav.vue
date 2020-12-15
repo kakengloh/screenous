@@ -1,64 +1,42 @@
 <template>
-    <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="/">Screenous</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul id="nav" class="navbar-nav mr-auto">
-
-                <router-link class="nav-link" to="/">Home</router-link>
-                
-                <router-link class="nav-link" to="/recorder">Recorder</router-link>
-
-                <router-link class="nav-link" to="/tutorial">Tutorial</router-link>
-                
-                <router-link class="nav-link" to="/contact">Contact Me</router-link>
-
-            </ul>
-        </div>
-
-  </nav>
+  <sui-menu secondary inverted class="nav">
+    <router-link to="/">
+      <sui-item>
+        <strong>Screenous</strong>
+      </sui-item>
+    </router-link>
+    <router-link to="/">
+      <sui-menu-item :active="$route.path == '/'" link name="Home"
+        >Home</sui-menu-item
+      >
+    </router-link>
+    <router-link to="/recorder">
+      <sui-menu-item :active="$route.path == '/recorder'" link name="Recorder"
+        >Recorder</sui-menu-item
+      >
+    </router-link>
+    <router-link to="/tutorial">
+      <sui-menu-item :active="$route.path == '/tutorial'" link name="Tutorial"
+        >Tutorial</sui-menu-item
+      >
+    </router-link>
+    <router-link to="/contact">
+      <sui-menu-item :active="$route.path == '/contact'" link name="Contact"
+        >Contact Me</sui-menu-item
+      >
+    </router-link>
+  </sui-menu>
 </template>
 
 <script>
 export default {
-    name: 'Nav',
-}
+  name: "Nav",
+};
 </script>
 
 <style scoped>
-
-nav {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #384FB7;
-  height: 5vh;
+.nav {
+  background-color: #1b1c1d !important;
+  padding: 10px;
 }
-
-#nav a {
-  font-weight: bold;
-  opacity: 0.6;
-  color: white;
-}
-
-#nav a:hover {
-  font-weight: bold;
-  opacity: 0.8;
-  color: white;
-}
-
-#nav a.router-link-exact-active {
-  color: white;
-  opacity: 1;
-}
-
-a.navbar-brand {
-    color: white;
-    font-weight: bold;
-}
-
 </style>

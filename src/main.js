@@ -10,6 +10,10 @@ firebase.initializeApp(config.firebase)
 
 import FirebaseMixin from '@/mixins/Firebase'
 
+import 'semantic-ui-css/semantic.min.css';
+import SuiVue from 'semantic-ui-vue'
+Vue.use(SuiVue)
+
 Vue.config.productionTip = false
 
 Vue.mixin(FirebaseMixin)

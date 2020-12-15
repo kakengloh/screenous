@@ -2,7 +2,9 @@
   <div id="app">
     <Nav />
     <div id="content">
-      <router-view/>
+      <sui-container>
+        <router-view/>
+      </sui-container>
     </div>
     <Footer />
   </div>
@@ -40,8 +42,8 @@ export default {
 
 html, body {
   background-color: #F1F3FF;
-  padding: 0;
-  margin: 0;
+  /* padding: 0;
+  margin: 0; */
 }
 
 #app {
@@ -53,36 +55,12 @@ html, body {
   position: relative;
 }
 
-#content {
-  height: 90vh;
-}
-
-.vertical-center {
-  min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 90vh; /* These two lines are counted as one :-)       */
-  display: flex;
-  align-items: center;
-}
-
-a {
-  transition: opacity .3s;
-  text-decoration: none;
-}
-
-.btn-primary {
-  background-color: #384FB7;
-  color: white;
-  border: none;
-  transition: opacity .3s;
-}
-
-.btn-primary:hover {
-  background-color: #384FB7;
-  opacity: .6;
-}
-
-.btn-primary:focus {
-  background-color: #384FB7;
+.center-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
 
 </style>
