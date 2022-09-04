@@ -30,11 +30,11 @@ const Record: NextPage = () => {
 
   const onRecordStop = async (blob: Blob) => {
     setBlobUrl(URL.createObjectURL(blob));
+    onSuccessModalOpen();
     s3Upload(blob, {
       onSuccess: ({ id, downloadUrl }) => {
         setDownloadUrl(downloadUrl);
         setShareableUrl(`${window.location.origin}/play/${id}`);
-        onSuccessModalOpen();
       },
     });
   };
