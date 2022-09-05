@@ -11,6 +11,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.35.1
   aws-sdk: ^2.1204.0
   axios: ^0.27.2
+  dayjs: ^1.11.5
   eslint: 7.32.0
   eslint-config-next: 12.2.5
   eslint-plugin-react: ^7.31.1
@@ -22,7 +23,6 @@ specifiers:
   react-icons: ^4.4.0
   react-query: ^3.39.2
   react-router-dom: ^6.3.0
-  react-timer-hook: ^3.0.5
   short-uuid: ^4.2.0
   typescript: 4.8.2
 
@@ -32,6 +32,7 @@ dependencies:
   '@emotion/styled': 11.10.0_lzabd6uj4wst47copsenr4b56q
   aws-sdk: 2.1204.0
   axios: 0.27.2
+  dayjs: 1.11.5
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -39,7 +40,6 @@ dependencies:
   react-icons: 4.4.0_react@18.2.0
   react-query: 3.39.2_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
-  react-timer-hook: 3.0.5_biqbaboplfbrettd7655fr4n2y
   short-uuid: 4.2.0
 
 devDependencies:
@@ -2016,6 +2016,10 @@ packages:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
 
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
+    dev: false
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -3439,16 +3443,6 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.4.0
-    dev: false
-
-  /react-timer-hook/3.0.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-n+98SdmYvui2ne3KyWb3Ldu4k0NYQa3g/VzW6VEIfZJ8GAk/jJsIY700M8Nd2vNSTj05c7wKyQfJBqZ0x7zfiA==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react/18.2.0:

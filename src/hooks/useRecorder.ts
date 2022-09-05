@@ -1,23 +1,24 @@
 import { useBoolean } from '@chakra-ui/react';
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { useStopwatch } from 'react-timer-hook';
 
 interface UseRecorderProps {
   onRecordStop?: (blob: Blob) => void;
 }
+
+const MAX_RECORD_DURATION_IN_MINUTE = 15;
 
 function useRecorder({ onRecordStop }: UseRecorderProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [isMuted, { toggle: toggleMute }] = useBoolean(true);
   const [recorder, setRecorder] = useState<MediaRecorder>();
   const [blob, setBlob] = useState<Blob>();
+  const [startAt, setStartAt] = useState<Date | null>(null);
+  const [secondElapsed, setSecondElapsed] = useState(0);
 
-  const {
-    seconds,
-    minutes,
-    start: startStopwatch,
-    reset: resetStopwatch,
-  } = useStopwatch({ autoStart: false });
+  const endAt = startAt
+    ? dayjs(startAt).add(MAX_RECORD_DURATION_IN_MINUTE, 'minute').toDate()
+    : null;
 
   const startRecord = async () => {
     const videoStream = await navigator.mediaDevices.getDisplayMedia({
@@ -45,16 +46,16 @@ function useRecorder({ onRecordStop }: UseRecorderProps) {
     const recorder = new MediaRecorder(stream, { mimeType });
     recorder.start();
 
-    startStopwatch();
     setIsRecording(true);
     setRecorder(recorder);
+    setStartAt(new Date());
   };
 
   const stopRecord = () => {
     if (!recorder) return;
 
     setIsRecording(false);
-    resetStopwatch();
+    setStartAt(null);
 
     recorder.ondataavailable = (e) => {
       const blob = new Blob([e.data], { type: e.data.type });
@@ -73,17 +74,25 @@ function useRecorder({ onRecordStop }: UseRecorderProps) {
   };
 
   useEffect(() => {
-    if (minutes >= 5) stopRecord();
-  }, [minutes]);
+    const timeout = setTimeout(() => {
+      setSecondElapsed(secondElapsed + 1);
+    }, 1000);
+
+    if (!startAt || !endAt) return;
+
+    if (dayjs().isAfter(endAt)) {
+      stopRecord();
+    }
+
+    return () => clearTimeout(timeout);
+  }, [secondElapsed]);
 
   return {
     isRecording,
     isMuted,
     toggleMute,
-    timeElapsed: {
-      seconds,
-      minutes,
-    },
+    startAt,
+    endAt,
     startRecord,
     stopRecord,
     blob,

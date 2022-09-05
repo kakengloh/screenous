@@ -14,6 +14,9 @@ import { FiMic, FiMicOff, FiPlayCircle, FiStopCircle } from 'react-icons/fi';
 import { useRecorder } from 'hooks';
 import { useState } from 'react';
 import { useS3Upload } from 'hooks/useS3Upload';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 const Record: NextPage = () => {
   const [blobUrl, setBlobUrl] = useState('');
@@ -43,7 +46,8 @@ const Record: NextPage = () => {
     isRecording,
     isMuted,
     toggleMute,
-    timeElapsed,
+    startAt,
+    endAt,
     startRecord,
     stopRecord,
   } = useRecorder({ onRecordStop });
@@ -113,12 +117,7 @@ const Record: NextPage = () => {
               </Button>
             )}
             {isRecording && (
-              <Text color="gray">
-                {timeElapsed.seconds === 0
-                  ? 5 - timeElapsed.minutes
-                  : 4 - timeElapsed.minutes}
-                m {timeElapsed.seconds === 0 ? 0 : 60 - timeElapsed.seconds}s
-              </Text>
+              <Text>{dayjs(startAt).to(endAt, true) + ' left'}</Text>
             )}
           </VStack>
         </Center>

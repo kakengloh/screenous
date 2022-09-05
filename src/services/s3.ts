@@ -30,7 +30,7 @@ class S3Client {
         },
         Expires: 60, // seconds
         Conditions: [
-          ['content-length-range', 0, 52428800], // up to 50 MB
+          ['content-length-range', 0, 5e8], // up to 500 MB
         ],
       }),
     );
